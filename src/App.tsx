@@ -33,6 +33,7 @@ const BrowseInfluencers = lazy(() => import('@/pages/brand/BrowseInfluencers').t
 const BrandCampaigns = lazy(() => import('@/pages/brand/BrandCampaigns').then(m => ({ default: m.BrandCampaigns })))
 const BrandAnalytics = lazy(() => import('@/pages/brand/BrandAnalytics').then(m => ({ default: m.BrandAnalytics })))
 const BrandSettings = lazy(() => import('@/pages/brand/BrandSettings').then(m => ({ default: m.BrandSettings })))
+const CampaignPerformancePredictor = lazy(() => import('@/pages/brand/CampaignPerformancePredictor').then(m => ({ default: m.CampaignPerformancePredictor })))
 
 // Shared
 const CampaignDetail = lazy(() => import('@/pages/campaigns/CampaignDetail').then(m => ({ default: m.CampaignDetail })))
@@ -147,6 +148,7 @@ export default function App() {
                 <Route path="campaigns/:id" element={<CampaignDetail />} />
                 <Route path="analytics" element={<BrandAnalytics />} />
                 <Route path="settings" element={<BrandSettings />} />
+                <Route path="predictor" element={<CampaignPerformancePredictor />} />
               </Route>
 
               {/* 404 */}

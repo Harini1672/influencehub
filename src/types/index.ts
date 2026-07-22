@@ -107,6 +107,68 @@ export interface DashboardStats {
   totalBudget?: number
 }
 
+// ── Campaign Performance Predictor ───────────────────────────────────────────
+
+export interface PredictionInput {
+  influencer: Influencer
+  campaign?: Campaign
+  brand: Brand
+}
+
+export interface PredictionScoreBreakdown {
+  nicheMatch: number       // 0–25
+  engagementQuality: number // 0–25
+  audienceSize: number     // 0–20
+  platformFit: number      // 0–15
+  locationRelevance: number // 0–15
+}
+
+export interface CampaignPrediction {
+  // Meta
+  id?: string
+  brand_id?: string
+  campaign_id?: string | null
+  influencer_id?: string
+  created_at?: string
+
+  // Inputs snapshot
+  influencer_name: string
+  influencer_platform: string
+  influencer_niche: string
+  influencer_followers: number
+  influencer_engagement_rate: number
+  influencer_location: string | null
+  campaign_title: string | null
+  campaign_budget: number | null
+
+  // Outputs
+  success_score: number        // 0–100
+  confidence_score: number     // 0–100
+  estimated_reach: number
+  estimated_engagement: number
+  expected_clicks: number
+  expected_conversions: number
+  predicted_roi: number        // e.g. 3.2 = 320% ROI
+
+  // Breakdown + narrative
+  score_breakdown: PredictionScoreBreakdown
+  insights: string[]
+  risk_factors: string[]
+}
+
+export interface AIRecommendedInfluencer {
+  influencer: Influencer
+  matchScore: number
+  reasons: string[]
+  scoreBreakdown: {
+    nicheScore: number
+    engagementScore: number
+    followersScore: number
+    platformScore: number
+    locationScore: number
+  }
+}
+
 export interface InfluencerFilters {
   search: string
   platform: string
